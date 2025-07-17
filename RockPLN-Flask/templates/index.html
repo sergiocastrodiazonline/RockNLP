@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clasificador de Género Musical</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Clasificador de Rock vs No-Rock</h1>
+    <p>Los resultados no siempre son fiables, es una aplicación en desarrollo y para probar como se puede usar NLP en un servidor web.</p>
+    <form method="post">
+        <textarea name="lyrics" rows="10" cols="60" placeholder="Introduce la letra de la canción..."></textarea><br><br>
+        <label>Selecciona el modelo:</label>
+        <select name="modelo">
+            <option value="mlp">Perceptrón Multicapa</option>
+        </select><br><br>
+        <input type="submit" value="Clasificar">
+    </form>
+
+    {% if prediction %}
+        <h2>Resultado: {{ prediction }}</h2>
+        <p>Probabilidades:</p>
+        <ul>
+            <li>Rock: {{ prob_rock }}%</li>
+            <li>No Rock: {{ prob_no_rock }}%</li>
+        </ul>
+    {% endif %}
+</body>
+</html>
